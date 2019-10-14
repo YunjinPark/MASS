@@ -5,7 +5,7 @@ import sys
 from collections import Counter
 from multiprocessing import Pool
 
-# from transformers import BertTokenizer
+from transformers import BertTokenizer
 
 
 def main():
