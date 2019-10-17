@@ -1,11 +1,13 @@
 import os
 from multiprocessing import Pool
-from transformers import BasicTokenizer
+# from transformers import BasicTokenizer
+from util.lang_util import filter_str_by_chartype
 
 dir_path = '/media/pipaek/wdusb/data/cleaned'
-target_dir = '/media/pipaek/wdusb/data/mass-raw'
+# target_dir = '/media/pipaek/wdusb/data/mass-raw'
+target_dir = '/media/pipaek/wdusb/data/mass-raw-nosplit-charex'
 target_file_format = '%s-%06d.txt'
-tokenizer = BasicTokenizer()
+# tokenizer = BasicTokenizer()  # 얘가 쓸데없는 캐릭터를 많이 없애준다는 사실을 몰랐네..
 
 def write_one_output(datafile_handle, target_file_path, max_doc_count=100):
     bContinue = True
@@ -38,9 +40,10 @@ def write_one_output(datafile_handle, target_file_path, max_doc_count=100):
                 if not doc_start:
                     doc_start = True
                     doc_count += 1
-                line = " ".join(tokenizer.tokenize(line))
+                # line = " ".join(tokenizer.tokenize(line))
+                line = filter_str_by_chartype(line)
                 target.write(line)
-                target.write('\n')
+                target.write('\n')  # tokenizer를 안쓰면 \n은 필요없다..
 
     return bContinue
 
