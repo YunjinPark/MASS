@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 RAW_CORPUS_FILE_PATH=data/raw_korean_corpus.train.txt
-MODEL_PREFIX=mass_kor_64k
-VOCAB_SIZE=64000
+MODEL_PREFIX=mass_kor_32k
+VOCAB_SIZE=32000
 MAX_SENTENCE=50000000
 
 cd ..

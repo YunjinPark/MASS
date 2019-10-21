@@ -5,8 +5,8 @@ import sys
 from collections import Counter
 from multiprocessing import Pool
 
-from transformers import BertTokenizer
-
+# from transformers import BertTokenizer
+import sentencepiece as spm
 
 def main():
     parser = argparse.ArgumentParser()
@@ -69,8 +69,11 @@ class MultiprocessingEncoder(object):
         self.args = args
 
     def initializer(self):
-        global bpe
-        bpe = BertTokenizer.from_pretrained('bert-base-uncased')
+        # global bpe
+        # # bpe = BertTokenizer.from_pretrained('bert-base-uncased')
+        # bpe =
+        global sp
+        sp = spm.SentencePieceProcessor()
 
     def encode(self, line):
         global bpe

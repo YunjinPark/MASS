@@ -38,6 +38,7 @@ class BertDictionary(Dictionary):
             for line in input_file:
                 k, v = line.split()
                 d.add_symbol(k)
+                # print(k)
 
         d.unk_word = '[UNK]'
         d.pad_word = '[PAD]'
@@ -50,9 +51,30 @@ class BertDictionary(Dictionary):
         d.unk_index = d.add_symbol('[UNK]')
 
         d.nspecial = 999
+
+        for k, v in d.indices.items():
+            print(v)
+
         return d
 
     def save(self, f):
         """Stores dictionary into a text file"""
         ex_keys, ex_vals = self._get_meta()
         self._save(f, zip(ex_keys + self.symbols, ex_vals + self.count))
+
+# filename = '/media/pipaek/wdusb/data/transformer-lm/korean-bulk/sp-model.vocab'
+# d = BertDictionary.load_from_file(filename)
+# # sss = d.encode_line('인간은 반드시 배신한다. 그 상황에서 할 수 있는 것이 배신밖에 없으므로 배신한다. ')
+# line = '인간은 반드시 배신한다. 그 상황에서 할 수 있는 것이 배신밖에 없으므로 배신한다. '
+# # tokens = d.encode_line(
+# #                     line, add_if_not_exist=False,
+# #                     append_eos=True, reverse_order=False,
+# #                 ).long()
+# # print(tokens)
+#
+# # print(sss)
+# # print(d[32004])
+# # print(d[32005])
+# # print(d[32006])
+# # print(d[17617])
+# # print(d[17668])

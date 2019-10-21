@@ -27,7 +27,7 @@ def main():
     args = parser.parse_args()
 
     #--mining_sentence_size = 1000000
-    templates = '--input={} --model_prefix={} --vocab_size={} --model_type=bpe --input_sentence_size={}'# --pad_id=0 --unk_id=1 --bos_id=2 --eos_id=3 --pad_piece=<pad> --unk_piece=<unk> --bos_piece=<s> --eos_piece=</s> --control_symbols=<mask>'
+    templates = '--input={} --model_prefix={} --vocab_size={} --model_type=bpe --max_sentence_length=16384 --input_sentence_size={} --character_coverage=0.9995 --pad_id=0 --unk_id=1 --bos_id=2 --eos_id=3 --pad_piece=[PAD] --unk_piece=[UNK] --bos_piece=[CLS] --eos_piece=[SEP] --control_symbols=[MASK]'
 
     print('### args.input: ', args.input)
 
