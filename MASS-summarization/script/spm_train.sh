@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-RAW_CORPUS_FILE_PATH=data/raw_korean_corpus.train.txt
+#RAW_CORPUS_FILE_PATH=data/raw_korean_corpus.train.txt
+RAW_CORPUS_FILE_PATH=~/project/transformer-lm/tests/korean-bulk/sp-text.txt
 MODEL_PREFIX=mass_kor_32k
 VOCAB_SIZE=32000
 MAX_SENTENCE=50000000
