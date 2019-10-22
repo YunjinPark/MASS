@@ -37,8 +37,10 @@ class BertDictionary(Dictionary):
         with open(filename, 'r', encoding='utf-8', errors='ignore') as input_file:
             for line in input_file:
                 k, v = line.split()
+                # 여기서 k에 포함된 _를 ##로 바꿔주자..
+                k = k.replace("▁", "##")
                 d.add_symbol(k)
-                # print(k)
+                print(k)
 
         d.unk_word = '[UNK]'
         d.pad_word = '[PAD]'
@@ -52,8 +54,8 @@ class BertDictionary(Dictionary):
 
         d.nspecial = 999
 
-        for k, v in d.indices.items():
-            print(v)
+        # for k, v in d.indices.items():
+        #     print(k)
 
         return d
 
@@ -63,18 +65,21 @@ class BertDictionary(Dictionary):
         self._save(f, zip(ex_keys + self.symbols, ex_vals + self.count))
 
 # filename = '/media/pipaek/wdusb/data/transformer-lm/korean-bulk/sp-model.vocab'
-# d = BertDictionary.load_from_file(filename)
-# # sss = d.encode_line('인간은 반드시 배신한다. 그 상황에서 할 수 있는 것이 배신밖에 없으므로 배신한다. ')
-# line = '인간은 반드시 배신한다. 그 상황에서 할 수 있는 것이 배신밖에 없으므로 배신한다. '
-# # tokens = d.encode_line(
-# #                     line, add_if_not_exist=False,
-# #                     append_eos=True, reverse_order=False,
-# #                 ).long()
-# # print(tokens)
-#
-# # print(sss)
-# # print(d[32004])
-# # print(d[32005])
-# # print(d[32006])
-# # print(d[17617])
-# # print(d[17668])
+filename = './../mass_kor_32k.vocab'
+d = BertDictionary.load_from_file(filename)
+# sss = d.encode_line('인간은 반드시 배신한다. 그 상황에서 할 수 있는 것이 배신밖에 없으므로 배신한다. ')
+line = '인간은 반드시 배신한다. 그 상황에서 할 수 있는 것이 배신밖에 없으므로 배신한다. '
+tokens = d.encode_line(
+                    line, add_if_not_exist=False,
+                    append_eos=True, reverse_order=False,
+                ).long()
+print(tokens)
+for token in tokens:
+    print(d[token])
+
+# print(sss)
+# print(d[32004])
+# print(d[32005])
+# print(d[32006])
+# print(d[17617])
+# print(d[17668])
