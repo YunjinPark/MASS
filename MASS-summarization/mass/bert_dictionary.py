@@ -77,9 +77,3 @@ print(tokens)
 for token in tokens:
     print(d[token])
 
-# print(sss)
-# print(d[32004])
-# print(d[32005])
-# print(d[32006])
-# print(d[17617])
-# print(d[17668])
