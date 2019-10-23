@@ -38,7 +38,7 @@ class BertDictionary(Dictionary):
             for line in input_file:
                 k, v = line.split()
                 # 여기서 k에 포함된 _를 ##로 바꿔주자..
-                k = k.replace("▁", "##")
+                # k = k.replace("▁", "##") # 이건 삽질이었다. 여기서 바꿔주면 안된다.
                 d.add_symbol(k)
                 # print(k)
 
