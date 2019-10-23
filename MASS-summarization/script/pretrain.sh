@@ -23,5 +23,6 @@ fairseq-train processed \
     --optimizer adam --adam-betas '(0.9, 0.98)' --adam-eps 1e-6 --clip-norm 0.0 \
     --lr-scheduler polynomial_decay --lr $PEAK_LR --warmup-updates $WARMUP_UPDATES --total-num-update $TOTAL_UPDATES \
     --dropout 0.1 --attention-dropout 0.1 --weight-decay 0.01 \
-    --max-sentences $MAX_SENTENCES --update-freq $UPDATE_FREQ \
+#    --max-sentences $MAX_SENTENCES --update-freq $UPDATE_FREQ \
+    --tokens_per_batch 3000 --update-freq $UPDATE_FREQ \
     --ddp-backend=no_c10d
