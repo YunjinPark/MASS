@@ -4,19 +4,21 @@ cd ..
 BASEDIR=$(pwd)
 echo $BASEDIR
 echo '>>>> Start MASS Pretraining...'
+export PYTHONPATH=${PYTHONPATH}:~/data1/project/MASS/MASS-summarization
 
 VOCAB_FILE=mass_kor_32k.vocab
-
 
 TOKENS_PER_SAMPLE=512
 WARMUP_UPDATES=10000
 PEAK_LR=0.0005
-TOTAL_UPDATES=125000
+#TOTAL_UPDATES=125000
+TOTAL_UPDATES=300000
 MAX_SENTENCES=8
 UPDATE_FREQ=16
 
 fairseq-train processed \
     --user-dir mass --task masked_s2s --arch transformer_mass_base \
+    --fp16 \
     --sample-break-mode none \
     --tokens-per-sample $TOKENS_PER_SAMPLE \
     --criterion masked_lm \
@@ -24,5 +26,6 @@ fairseq-train processed \
     --lr-scheduler polynomial_decay --lr $PEAK_LR --warmup-updates $WARMUP_UPDATES --total-num-update $TOTAL_UPDATES \
     --dropout 0.1 --attention-dropout 0.1 --weight-decay 0.01 \
     --max-sentences $MAX_SENTENCES --update-freq $UPDATE_FREQ \
-#    --tokens_per_batch 3000 --update-freq $UPDATE_FREQ \
     --ddp-backend=no_c10d
+#    --tokens_per_batch 3000 --update-freq $UPDATE_FREQ \
+#    --reset-optimizer
