@@ -4,7 +4,7 @@ cd ..
 BASEDIR=$(pwd)
 echo $BASEDIR
 echo '>>>> Start MASS Pretraining...'
-export PYTHONPATH=${PYTHONPATH}:~/data1/project/MASS/MASS-summarization
+export PYTHONPATH=$PYTHONPATH:$BASEDIR
 
 VOCAB_FILE=mass_kor_32k.vocab
 
